@@ -25,22 +25,36 @@ import { pokemonArray } from "./data/pokemon.js";
 // importing cardcontainer
 const cardContainer = document.querySelector("#card-container");
 const header = document.querySelector("#h1");
+
+
+const getPokemonTypes = () => {
+let pokemonTypeReturned = "";    
+        pokemonArray.filter((element) => {
+        if (element.types.length = 1) {
+        pokemonTypeReturned = `${element.types}`;
+        }
+        else {
+        pokemonTypeReturned = `${element.types[0]} &${element.types[1]}`;
+        };  
+        });
+return pokemonTypeReturned;       
+};
+
+
 const renderPokemonCards = () => {
   let cardshtml = "";
-  console.log(cardshtml);
-
   pokemonArray.forEach((element) => {
     cardshtml += `<div class="card">
     <img class="card__image" src=${element.sprite} alt="An image showing the pokemon ${element.name}.">
     <div class="card__content">
     <h2 class="card__heading">${element.name}</h2>
-    <p class="card__text">${element.name} (#${element.id}) is a        ${element.types[0]} ${element.types[1]} pokemon.
+    <p class="card__text">${element.name} (#${element.id}) is a ${getPokemonTypes(element)} type pokemon.
     </div>
     </div>`;
   });
-  console.log(cardshtml);
   return cardContainer.innerHTML = cardshtml;
 };
+
 
 // dom element for cardcontainer
 
