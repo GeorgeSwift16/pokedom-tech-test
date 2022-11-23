@@ -27,32 +27,26 @@ const cardContainer = document.querySelector("#card-container");
 const header = document.querySelector("#h1");
 
 
-const getPokemonTypes = () => {
-let pokemonTypeReturned = "";    
-        pokemonArray.filter((element) => {
-        if (element.types.length = 1) {
-        pokemonTypeReturned = `${element.types}`;
-        }
-        else {
-        pokemonTypeReturned = `${element.types[0]} &${element.types[1]}`;
-        };  
-        });
-return pokemonTypeReturned;       
-};
-
 
 const renderPokemonCards = () => {
-  let cardshtml = "";
-  pokemonArray.forEach((element) => {
+let pokemonTypeReturned = "";
+let cardshtml = "";
+    pokemonArray.forEach((element) => {
+    if (element.types.length < 2) {
+    pokemonTypeReturned = `${element.types[0]}`
+    }
+    else if (element.types.length = 2){
+    pokemonTypeReturned = element.types[0] + ` & ${element.types[1]}`
+    }
     cardshtml += `<div class="card">
     <img class="card__image" src=${element.sprite} alt="An image showing the pokemon ${element.name}.">
     <div class="card__content">
     <h2 class="card__heading">${element.name}</h2>
-    <p class="card__text">${element.name} (#${element.id}) is a ${getPokemonTypes(element)} type pokemon.
+    <p class="card__text">${element.name} (#${element.id}) is a ${pokemonTypeReturned} type pokemon.
     </div>
     </div>`;
-  });
-  return cardContainer.innerHTML = cardshtml;
+    });
+return cardContainer.innerHTML = cardshtml;
 };
 
 
